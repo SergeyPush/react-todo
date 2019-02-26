@@ -1,12 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+const el = (
+    <div>
+        <h1>My Todo list</h1>
+        <input type="text" placeholder="search"/>
+        <ul>
+            <li className="li">Learn React app</li>
+            <li className="li">Make awesome app</li>
+        </ul>
+    </div>
+);
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: http://bit.ly/CRA-PWA
-serviceWorker.unregister();
+ReactDOM.render(el, document.getElementById('root'));
+
+// ReactDOM.render(el, document.getElementById('root'));
