@@ -4,35 +4,42 @@ import './todo-list-item.css';
 
 class ToDOListItem extends React.Component {
 
-
-    onLabelClick=()=>{
-            console.log(`Clicked on ${this.props.label}`);
+    state = {
+        done: false,
+        important: false
     };
+
+
 
     render() {
 
-        const {label, important=0} = this.props;
+        const {label, onDeleted, onToggleImportant, onToggleDone, important, done} = this.props;
+        let classNames = 'todo-list-item';
 
-        const style = {
-            color: important ? 'steelblue' : 'black',
-            fontWeight: important ? 'bold' : 'normal'
-        };
+        if (done) {
+            classNames += ' done'
+        }
+        if (important){
+            classNames +=' important'
+        }
+
         return (
-            <span className="todo-list-item">
+            <span className={classNames}>
             <span className="todo-list-item-label"
-                  style={style} onClick={this.onLabelClick.bind(this)}
-                  >
+                   onClick={onToggleDone}
+            >
                 {label}
             </span>
-            <button type="button" className="btn btn-outline-success btn-sm">
-                <i className="fas fa-exclamation"/>
+            <button type="button" className="btn btn-outline-success btn-sm" onClick={onToggleImportant}>
+                <i className="fas fa-exclamation" />
             </button>
-            <button type="button" className="btn btn-outline-danger btn-sm">
+            <button type="button" className="btn btn-outline-danger btn-sm" onClick={onDeleted}>
                 <i className="fas fa-trash-alt"/>
             </button>
         </span>)
     }
-}
+
+   }
 
 
 export default ToDOListItem;
